@@ -1,0 +1,6 @@
+# Text files
+*.swp
+*.tmp
+
+# Fusesoc
+build/
