@@ -80,6 +80,7 @@ When running the step #4 or #5, fusesoc will perform the following:
         - If not, fusesoc will assume the core is a "local core" and will just
         use the files specified by the "filesets" section in .core file.
 
+
     - Fusesoc will output the name of the module being fetched when running
     a testbench or when building a project like this:
 
@@ -93,7 +94,23 @@ When running the step #4 or #5, fusesoc will perform the following:
     INFO: Preparing ::wb_leds:0
     ```
 
-2. After resolving the dependencies, fusesoc will create a `build` directory in
+2. The fusesoc fork we are using has initial support for Cheby generated files.
+This was done by adding a new `Cheby` "provider" to fusesoc.
+
+    - Basically, this "provider" runs `cheby` command-line tool to generate
+    the wishbone register-map in either VHDL (native Cheby) or Verilog (converted
+    from VHDL using vhd2vl). It does so by using the specified cheby .yml file
+    (`core_file: `, in the "provider section"). The `Cheby` "provider" code can
+    be seen here: https://github.com/lerwys/fusesoc/blob/master/fusesoc/provider/cheby.py
+
+    - The generated files will then be create when running the testbench as needed
+    and an output message like this should be seen on stdout:
+
+    ```bash
+    INFO: Using Cheby to generate core data/wb_leds_csr.yml
+    ```
+
+3. After resolving the dependencies, fusesoc will create a `build` directory in
 the same folder that it was run with at least the `src` folder in it.
 
     - The `src` folder will contain a copy of all of the dependant modules,
@@ -106,7 +123,7 @@ the same folder that it was run with at least the `src` folder in it.
     dpram_0  vlog_tb_utils_1.1  wb_bfm_1.2.1  wb_common_1.0.2  wbgen2_dpssram_0  wb_leds_0
     ```
 
-3. As we are running an Icarus testbench for our "wb_leds" module, fusesoc will create
+4. As we are running an Icarus testbench for our "wb_leds" module, fusesoc will create
 a `sim-icarus` folder inside `build`, containing a generated `Makefile`, the dependency
 list, `wb_leds.scr`, and some other support files. This is, of course, dependant on the
 tool being selected (e.g., Icarus Verilog, or "icarus" in fusesoc) and the target
@@ -120,7 +137,7 @@ tool being selected (e.g., Icarus Verilog, or "icarus" in fusesoc) and the targe
     vvp -n -M. -l icarus.log -lxt2  wb_leds_0
     ```
 
-4. Finally, fusesoc will execute icarus simulator and run the specified testbench
+5. Finally, fusesoc will execute icarus simulator and run the specified testbench
 (see target "sim" inside wb_leds .core file). The following should appear on stdout:
 
     ```bash
