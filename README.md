@@ -15,6 +15,15 @@ Some of the tools being tested here are:
         get it here: [Cheby Fork](https://github.com/lerwys/cheby)
 3. [vhd2vl](https://github.com/ldoolitt/vhd2vl), for converting from VHDL to Verilog code
 
+## Clone Instructions
+
+1. When cloning this project remember to specify the flag --recursive, so it
+it will clone the submodules, as well:
+
+```bash
+git clone --recursive https://github.com/lerwys/fpga-flow
+```
+
 ## Build Instructions
 
 1. Make sure to have the latest master versions of the tools installed
