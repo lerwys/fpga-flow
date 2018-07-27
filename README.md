@@ -41,3 +41,97 @@ fusesoc run --target=sim --tool=icarus wb_leds
 ```bash
 fusesoc build --target=sim --tool=icarus wb_leds --vcd
 ```
+
+## What's happening when bulding/running the project
+
+When running the step #4 or #5, fusesoc will perform the following:
+
+1. Fetch the modules' dependencies
+
+    - Fusesoc will gather the list of dependencies by looking at the "depend"
+    section of the respective module's .core file.
+
+    - With the list of dependencies, fusesoc will then search for the modules'
+    .core files by searching in its known libraries:
+        - The names and locations of those libraries are found in .conf files,
+        located in:
+            - `$XDG_CONFIG_HOME/fusesoc` (`$XDG_CONFIG_HOME` is normally set to
+            `~/.config` on Linux systems), initialized by running `fusesoc init`.
+            - `$PWD` .conf files, created by issuing `fusesoc library add <library-name> <library-location>`
+            - Command line option `cores-root` when building/running a module or
+            project.
+        - For local libraries, the ones with `sync-type = local` in its .conf
+        files, the location is specified in the `location =` parameter.
+        - For remote libraries, the ones with `sync-type = git` for instance,
+        the library location is found by looking at:
+            - `$XDG_DATA_HOME/fusesoc` (`$XDG_DATA_HOME` is normally set to
+            ~/.local/share on Linux systems), populated by issuing `fusesoc init`.
+            - `$PWD`, populated by issuing fusesoc library add `<library-name> <library-location>`
+
+    - In each core file, fusesoc will look for a `provider` section:
+        - If there is a provider section, it will use the information located there
+        to download the source files.
+            - Specifically, the "provider" section can contain various mechanisms
+            for fetching the core. The most common ones are "git", "github" and "url",
+            but there are others.
+            - In this case, fusesoc will download the specified files and put them
+            into into the cache, `$XDG_CACHE_HOME/fusesoc` (`$XDG_CACHE_HOME` is normally
+            set to `~/.cache` on Linux systems).
+        - If not, fusesoc will assume the core is a "local core" and will just
+        use the files specified by the "filesets" section in .core file.
+
+    - Fusesoc will output the name of the module being fetched when running
+    a testbench or when building a project like this:
+
+    ```bash
+    lerwys@lerwysPC:~/Repos/fpga-flow$ fusesoc run --target=sim --tool=icarus wb_leds
+    INFO: Preparing ::dpram:0
+    INFO: Preparing ::vlog_tb_utils:1.1
+    INFO: Preparing ::wb_common:1.0.2
+    INFO: Preparing ::wb_bfm:1.2.1
+    INFO: Preparing ::wbgen2_dpssram:0
+    INFO: Preparing ::wb_leds:0
+    ```
+
+2. After resolving the dependencies, fusesoc will create a `build` directory in
+the same folder that it was run with at least the `src` folder in it.
+
+    - The `src` folder will contain a copy of all of the dependant modules,
+    each in its own folder, and the module being tested itself. For example,
+    after running `fusesoc run --target=sim --tool=icarus wb_leds` the following
+    is present in my `build` directory:
+
+    ```bash
+    lerwys@lerwysPC:~/Repos/fpga-flow$ ls build/wb_leds_0/src/
+    dpram_0  vlog_tb_utils_1.1  wb_bfm_1.2.1  wb_common_1.0.2  wbgen2_dpssram_0  wb_leds_0
+    ```
+
+3. As we are running an Icarus testbench for our "wb_leds" module, fusesoc will create
+a `sim-icarus` folder inside `build`, containing a generated `Makefile`, the dependency
+list, `wb_leds.scr`, and some other support files. This is, of course, dependant on the
+tool being selected (e.g., Icarus Verilog, or "icarus" in fusesoc) and the target
+(e.g., Simulation, or "sim" in fusesoc)
+
+    - For the case of Icarus Verilog, fusesoc will issue the following commands
+    when running  `fusesoc run --target=sim --tool=icarus wb_leds`:
+
+    ```bash
+    iverilog -swb_leds_tb -c wb_leds_0.scr -o wb_leds_0
+    vvp -n -M. -l icarus.log -lxt2  wb_leds_0
+    ```
+
+4. Finally, fusesoc will execute icarus simulator and run the specified testbench
+(see target "sim" inside wb_leds .core file). The following should appear on stdout:
+
+    ```bash
+    Completed transaction 1/10
+    Completed transaction 2/10
+    Completed transaction 3/10
+    Completed transaction 4/10
+    Completed transaction 5/10
+    Completed transaction 6/10
+    Completed transaction 7/10
+    Completed transaction 8/10
+    Completed transaction 9/10
+    Completed transaction 10/10
+    ```
