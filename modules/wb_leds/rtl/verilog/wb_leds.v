@@ -49,6 +49,7 @@ module wb_leds
     output              wb_ack_o,
     output              wb_err_o,
     output              wb_rty_o,
+    output              wb_stall_o,
 
     // LEDs
     output [31:0]       leds_o
