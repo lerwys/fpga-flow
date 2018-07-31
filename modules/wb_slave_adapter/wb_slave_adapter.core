@@ -1,0 +1,9 @@
+CAPI=2:
+
+name: ::wb_slave_adapter:0
+
+filesets:
+  rtl:
+    files:
+      - rtl/verilog/wb_slave_adapter.v
+    file_type: verilogSource
