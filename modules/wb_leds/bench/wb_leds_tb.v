@@ -1,6 +1,8 @@
 module wb_leds_tb;
-    localparam clk_freq_hz = 100_000_000;
-    localparam clk_half_period = clk_freq_hz/2;
+    localparam clk_period = 5;
+    localparam clk_half_period = clk_period/2;
+    localparam num_cycles_rst = 4;
+    localparam rst_period = num_cycles_rst * clk_period;
 
     localparam MAX_ADDR = 31;
     localparam WB_AW = 32;
@@ -16,7 +18,7 @@ module wb_leds_tb;
     wire rst;
 
     always #clk_half_period clk <= !clk;
-    initial #100 rst_n <= 1;
+    initial #rst_period rst_n <= 1;
     assign rst = ~rst_n;
 
     vlog_tb_utils vlog_tb_utils0();
