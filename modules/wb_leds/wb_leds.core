@@ -19,6 +19,8 @@ filesets:
       - wb_bfm
 
 targets:
+  default:
+    filesets: [rtl]
   sim:
     default_tool: icarus
     filesets: [rtl, tb]
