@@ -36,14 +36,16 @@
 // This is a conversion from VHDL to Verilog
 
 module wb_slave_adapter #(
-    // Wishbone master mode: "CLASSIC" or "PIPELINED"
-    parameter g_master_mode        = "CLASSIC",
-    // Wishbone master g_slave_granularity: "BYTE" or "WORD"
-    parameter g_master_granularity = "BYTE",
-    // Wishbone slave mode: "CLASSIC" or "PIPELINED"
-    parameter g_slave_mode         = "CLASSIC",
-    // Wishbone master g_slave_granularity: "BYTE" or "WORD"
-    parameter g_slave_granularity  = "BYTE"
+    parameter dw = 32,
+    parameter aw = 32,
+    // Wishbone master mode: 0 ("CLASSIC") or 1 ("PIPELINED")
+    parameter g_master_mode        = 0,
+    // Wishbone master g_slave_granularity: 0 ("BYTE") or 1 ("WORD")
+    parameter g_master_granularity = 0,
+    // Wishbone slave mode: 0 ("CLASSIC") or 1 ("PIPELINED")
+    parameter g_slave_mode         = 0,
+    // Wishbone master g_slave_granularity: 0 ("BYTE") or 1 ("WORD")
+    parameter g_slave_granularity  = 0
 ) (
     // Clock/Resets
     input               clk_i,
@@ -51,26 +53,26 @@ module wb_slave_adapter #(
 
     // Wishbone signals
     // slave port (i.e. wb_slave_adapter is slave)
-    input  [31:0]       sl_adr_i,
-    input  [31:0]       sl_dat_i,
-    input  [3:0]        sl_sel_i,
+    input  [aw-1:0]     sl_adr_i,
+    input  [dw-1:0]     sl_dat_i,
+    input  [dw/8-1:0]   sl_sel_i,
     input               sl_we_i,
     input               sl_cyc_i,
     input               sl_stb_i,
-    output [31:0]       sl_dat_o,
+    output [dw-1:0]     sl_dat_o,
     output              sl_ack_o,
     output              sl_err_o,
     output              sl_rty_o,
     output              sl_stall_o,
 
     // master port (i.e. wb_slave_adapter is master)
-    output [31:0]       ma_adr_o,
-    output [31:0]       ma_dat_o,
-    output [3:0]        ma_sel_o,
+    output [aw-1:0]     ma_adr_o,
+    output [dw-1:0]     ma_dat_o,
+    output [dw/8-1:0]   ma_sel_o,
     output              ma_we_o,
     output              ma_cyc_o,
     output              ma_stb_o,
-    input [31:0]        ma_dat_i,
+    input [dw-1:0]      ma_dat_i,
     input               ma_ack_i,
     input               ma_err_i,
     input               ma_rty_i,
@@ -92,31 +94,31 @@ reg [c_state_width-1:0] fsm_state = IDLE;
 generate
     if (g_master_granularity == g_slave_granularity)
         assign ma_adr_o = sl_adr_i;
-    else if (g_master_granularity == "BYTE") // byte -> word
+    else if (g_master_granularity == 0) // byte -> word
         assign ma_adr_o = {sl_adr_i[32-c_num_bytes2word_bits-1:0], c_zero_bytes2word};
     else // word -> byte
         assign ma_adr_o = {c_zero_bytes2word, sl_adr_i[32-1:c_num_bytes2word_bits]};
 endgenerate
 
 // Parameter check
-generate if (g_slave_mode != "CLASSIC" && g_slave_mode != "PIPELINED") begin: gen_error
+generate if (g_slave_mode != 0 && g_slave_mode != 1) begin: gen_error
     g_slave_mode_is_invalid_valid_modes_are_classic_or_pipelined invalid();
 end
 endgenerate
 
 // Parameter check
-generate if (g_master_mode != "CLASSIC" && g_master_mode != "PIPELINED") begin: gen_error
+generate if (g_master_mode != 0 && g_master_mode != 1) begin: gen_error
     g_master_mode_is_invalid_valid_modes_are_classic_or_pipelined invalid();
 end
 endgenerate
 
-generate if (g_slave_mode == "PIPELINED" && g_master_mode == "CLASSIC") begin: gen_p2c
+generate if (g_slave_mode == 1 && g_master_mode == 0) begin: gen_p2c
     assign ma_stb_o = sl_stb_i;
     assign sl_stall_o = ~ma_ack_i;
 end
 endgenerate
 
-generate if (g_slave_mode == "CLASSIC" && g_master_mode == "PIPELINED") begin: gen_c2p
+generate if (g_slave_mode == 0 && g_master_mode == 1) begin: gen_c2p
     assign ma_stb_o = (fsm_state == IDLE)? sl_stb_i : 0;
     assign sl_stall_o = 0; // classic will ignore this anyway
 
