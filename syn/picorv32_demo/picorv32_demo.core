@@ -1,0 +1,53 @@
+CAPI=2:
+name : ::picorv32_demo:0
+
+filesets:
+  core_files:
+    files:
+      - ../../top/picorv32_demo/wb_intercon.v
+      - ../../top/picorv32_demo/wb_intercon.vh:         {is_include_file : true}
+      - ../../top/picorv32_demo/picorv32_demo_system.v
+    file_type: verilogSource
+    depend:
+      - ">=wb_intercon-1.0"
+      - ">=wb_ram-1.0"
+      - picorv32
+      - wb_leds
+
+  top_files:
+    files:
+      - ../../platform/xilinx/series7/sys_clk.v
+      - ../../top/picorv32_demo/picorv32_demo_top.v
+    file_type : verilogSource
+
+  constraints :
+    files:
+      - ../../top/picorv32_demo/picorv32_demo.xdc:      {file_type: xdc}
+
+targets:
+  synth: &synth
+    default_tool : vivado
+    filesets   :
+      - core_files
+      - top_files
+      - constraints
+    tools:
+      vivado:
+        part: xc7a35tcpg236-1
+    toplevel: [picorv32_demo_top]
+
+  default:
+    <<: *synth
+
+parameters:
+  firmware_file:
+    datatype    : file
+    description : Initial boot ROM contents (in Verilog hex format)
+    paramtype   : vlogparam
+    scope       : private
+
+#provider:
+#  name    : github
+#  user    : lerwys
+#  repo    : fpga-flow
+# version : v0
