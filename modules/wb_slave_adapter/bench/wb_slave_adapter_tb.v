@@ -142,12 +142,6 @@ module wb_slave_adapter_tb;
         if($test$plusargs("verbose"))
             VERBOSE = 2;
 
-        // Dump WB BFM memory
-        max_addr = (MAX_ADDR_TEST > MEM_WORDS)? MEM_WORDS : MAX_ADDR_TEST;
-        for (mw=0; mw<max_addr; mw=mw+1) begin
-            $dumpvars(0, gen_wb_dut[TEST_X2X].wb_bfm_mod_mem.mem[mw]);
-        end
-
         @(negedge rst);
         @(posedge clk);
 
