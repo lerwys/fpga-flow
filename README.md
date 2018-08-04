@@ -39,19 +39,21 @@ fusesoc init
 fusesoc library add --global fpga-flow .
 ```
 
-4. Run LED testbench
+### LEDs Example
+
+1. Run LED testbench
 
 ```bash
 fusesoc run --target=sim --tool=icarus wb_leds
 ```
 
-5. Optionally, run the simulation opening the vcd file with gtkwave
+2. Optionally, run the simulation opening the vcd file with gtkwave
 
 ```bash
 fusesoc build --target=sim --tool=icarus wb_leds --vcd
 ```
 
-## What's happening when bulding/running the project
+#### What's happening when bulding/running the LEDs example project
 
 When running the step #4 or #5, fusesoc will perform the following:
 
@@ -161,3 +163,11 @@ tool being selected (e.g., Icarus Verilog, or "icarus" in fusesoc) and the targe
     Completed transaction 9/10
     Completed transaction 10/10
     ```
+
+### PicoRV32 Example
+
+1. Run synthesis for picorv32
+
+```bash
+fusesoc run --target=synth --tool=vivado picorv32_demo
+```
