@@ -4,9 +4,9 @@ name : ::picorv32_demo:0
 filesets:
   core_files:
     files:
-      - ../../top/picorv32_demo/wb_intercon.v
-      - ../../top/picorv32_demo/wb_intercon.vh:         {is_include_file : true}
-      - ../../top/picorv32_demo/picorv32_demo_system.v
+      - top/picorv32_demo/wb_intercon.v
+      - top/picorv32_demo/wb_intercon.vh:         {is_include_file : true}
+      - top/picorv32_demo/picorv32_demo_system.v
     file_type: verilogSource
     depend:
       - ">=wb_intercon-1.0"
@@ -16,13 +16,13 @@ filesets:
 
   top_files:
     files:
-      - ../../platform/xilinx/series7/sys_clk.v
-      - ../../top/picorv32_demo/picorv32_demo_top.v
+      - platform/xilinx/series7/sys_clk.v
+      - top/picorv32_demo/picorv32_demo_top.v
     file_type : verilogSource
 
   constraints :
     files:
-      - ../../top/picorv32_demo/picorv32_demo.xdc:      {file_type: xdc}
+      - top/picorv32_demo/picorv32_demo.xdc:      {file_type: xdc}
 
 targets:
   synth: &synth
