@@ -57,6 +57,9 @@ module picorv32_demo_tb #(
         if (!rst && trap) begin
             repeat (10) @(posedge clk);
             $display("TRAP after %1d clock cycles", cycle_counter);
+            if ($test$plusargs("noerror"))
+                $finish;
+            $stop;
         end
     end
 
