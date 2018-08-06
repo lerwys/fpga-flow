@@ -20,6 +20,11 @@ filesets:
       - top/picorv32_demo/picorv32_demo_top.v
     file_type : verilogSource
 
+  tb:
+    files:
+        - testbench/picorv32_demo/picorv32_demo_tb.v
+    file_type : verilogSource
+
   constraints :
     files:
       - top/picorv32_demo/picorv32_demo.xdc:      {file_type: xdc}
@@ -34,17 +39,34 @@ targets:
     tools:
       vivado:
         part: xc7a35tcpg236-1
+        hw_device: xc7a35t_0
     toplevel: [picorv32_demo_top]
+
+  sim:
+    default_tool: icarus
+    filesets: [core_files, tb]
+    parameters: [firmware, noerror, trace, vcd]
+    toplevel: [picorv32_demo_tb]
 
   default:
     <<: *synth
 
 parameters:
-  firmware_file:
-    datatype    : file
-    description : Initial boot ROM contents (in Verilog hex format)
-    paramtype   : vlogparam
-    scope       : private
+  firmware:
+    datatype  :  file
+    paramtype : plusarg
+  noerror:
+    datatype  :  bool
+    paramtype : plusarg
+  trace:
+    datatype  : bool
+    paramtype : plusarg
+  vcd:
+    datatype  : bool
+    paramtype : plusarg
+  verbose:
+    datatype : bool
+    paramtype : plusarg
 
 #provider:
 #  name    : github
