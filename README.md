@@ -177,3 +177,15 @@ make -C firmware firmware.hex
 ```bash
 fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmware.hex
 ```
+
+3. Optionally run fusesoc with the option --vcd to genearte a dump of the signals
+
+```bash
+fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmware.hex --vcd
+```
+
+4. And open gtkwave to analyze the signals
+
+```bash
+gtkwave build/picorv32_demo_0/sim-icarus/testbench.vcd testbench/picorv32_demo/picorv32_demo_tb.gtkw
+```
