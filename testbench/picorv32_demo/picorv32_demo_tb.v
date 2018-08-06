@@ -47,7 +47,7 @@ module picorv32_demo_tb #(
     reg [1023:0] firmware_file;
     initial begin
         if (!$value$plusargs("firmware=%s", firmware_file))
-            firmware_file = "ip_cores/picorv32/firmware/firmware.hex";
+            firmware_file = "firmware/firmware.hex";
 		$readmemh(firmware_file, dut.cmp_wb_ram.ram0.mem);
     end
 
