@@ -189,3 +189,33 @@ fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmw
 ```bash
 gtkwave build/picorv32_demo_0/sim-icarus/testbench.vcd testbench/picorv32_demo/picorv32_demo_tb.gtkw
 ```
+
+### PicoRV32 Makefile automation
+
+Instead of typing the commands one by one, a Makefile is provided for convenience.
+The Makefile just calls FuseSoC on the background, but it avoids having to memorize
+the full command.
+
+* Run simulation
+
+```bash
+make picorv32_demo_sim
+````
+
+* Run simulation with VCD output
+
+```bash
+make picorv32_demo_view
+````
+
+* Run synthesis
+
+```bash
+make picorv32_demo_synth
+````
+
+* Clean generated files
+
+```bash
+make clean
+````
