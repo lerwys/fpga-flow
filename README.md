@@ -175,5 +175,5 @@ make -C ip_cores/picorv32 firmware/firmware.hex
 2. Run synthesis for picorv32
 
 ```bash
-fusesoc run --target=synth --tool=vivado picorv32_demo --firmware ip_cores/picorv32/firmware/firmware.hex
+fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=ip_cores/picorv32/firmware/firmware.hex
 ```
