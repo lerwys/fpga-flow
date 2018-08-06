@@ -1,5 +1,6 @@
 module picorv32_demo_system #(
-    parameter firmware_file = ""
+    parameter firmware_file = "",
+    parameter firmware_ram_depth = 16384*4
 )
 (
     input           clk_i,
@@ -54,7 +55,8 @@ picorv32_wb #(
 ////////////////////////////////////////////////////////////////////////
 
 wb_ram #(
-    .memfile            (firmware_file)
+    .memfile            (firmware_file),
+    .depth              (firmware_ram_depth)
 ) cmp_wb_ram (
     //Wishbone Master interface
     .wb_clk_i           (clk_i),
