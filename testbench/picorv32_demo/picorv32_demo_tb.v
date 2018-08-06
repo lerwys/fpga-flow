@@ -48,6 +48,7 @@ module picorv32_demo_tb #(
     initial begin
         if (!$value$plusargs("firmware=%s", firmware_file))
             firmware_file = "ip_cores/picorv32/firmware/firmware.hex";
+		$readmemh(firmware_file, dut.cmp_wb_ram.ram0.mem);
     end
 
     integer cycle_counter;
@@ -59,9 +60,7 @@ module picorv32_demo_tb #(
         end
     end
 
-    picorv32_demo_system #(
-        .firmware_file  (firmware_file)
-    ) dut
+    picorv32_demo_system dut
     (
         .clk_i          (clk),
         .rst_i          (rst),
