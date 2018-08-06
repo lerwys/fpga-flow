@@ -5,7 +5,7 @@ module picorv32_demo_tb #(
 );
 
     reg clk = 1;
-    reg rst_n = 1;
+    reg rst_n = 0;
     wire trap;
 
     always #5 clk = ~clk;
@@ -13,7 +13,7 @@ module picorv32_demo_tb #(
 
     initial begin
         repeat (100) @(posedge clk);
-        rst_n <= 0;
+        rst_n <= 1;
     end
 
     initial begin
