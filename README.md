@@ -169,11 +169,11 @@ tool being selected (e.g., Icarus Verilog, or "icarus" in fusesoc) and the targe
 1. Generate example firmware
 
 ```bash
-make -C ip_cores/picorv32 firmware/firmware.hex
+make -C firmware firmware.hex
 ```
 
 2. Run synthesis for picorv32
 
 ```bash
-fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=ip_cores/picorv32/firmware/firmware.hex
+fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmware.hex
 ```
