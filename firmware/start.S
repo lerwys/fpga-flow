@@ -375,7 +375,7 @@ start:
 	addi tp, gp, 0
 
     /* Call main function */
-    jal ra,main
+    call main
 
 	/* trap */
 	ebreak
