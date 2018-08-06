@@ -1,6 +1,7 @@
 # Text files
 *.swp
 *.tmp
+**/tags
 
 # Fusesoc
 build/
