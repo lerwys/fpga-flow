@@ -43,11 +43,11 @@ picorv32_wb #(
     .wbm_we_o           (wb_m2s_picorv32_we),
     .wbm_sel_o          (wb_m2s_picorv32_sel),
 
-    .trap               (trap),
-    .irq                (irq),
-    .trace_valid        (trace_valid),
-    .trace_data         (trace_data),
-    .mem_instr          (mem_instr)
+    .trap               (trap_o),
+    .irq                (irq_i),
+    .trace_valid        (trace_valid_o),
+    .trace_data         (trace_data_o),
+    .mem_instr          (mem_instr_o)
 );
 
 ////////////////////////////////////////////////////////////////////////
