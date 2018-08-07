@@ -166,11 +166,45 @@ tool being selected (e.g., Icarus Verilog, or "icarus" in fusesoc) and the targe
 
 ### PicoRV32 Example
 
-1. Generate example firmware
+This is a more complete example than the above LEDs example and shows the usage
+of the PicoRV32 along with a RAM and a LEDs module.
+
+The top-level design can be found at "top/picorv32_demo/picorv32_demo_top.v"
+and the PicoRV32 system with a RAM and LEDs can be found at "top/picorv32_demo/picorv32_demo_top.v".
+
+In the same way as the above LEDs example, the same FuseSoC flow is happening here.
+Particularly, more dependencies will be fetched when FuseSoC runs:
 
 ```bash
-make -C firmware firmware.hex
+fusesoc run --target=sim --tool=icarus picorv32_demo --firmware=firmware/firmware.hex --vcd
+INFO: Preparing ::cdc_utils:0.1
+INFO: Preparing ::dpram:0
+INFO: Preparing ::picorv32:0-r1
+INFO: Preparing ::verilog-arbiter:0-r2
+INFO: Preparing ::vlog_tb_utils:1.1
+INFO: Preparing ::wb_common:1.0.2
+INFO: Preparing ::wb_bfm:1.2.1
+INFO: Preparing ::wbgen2_dpssram:0
+INFO: Preparing ::wb_intercon:1.2.1
+INFO: Preparing ::wb_leds:0
+INFO: Preparing ::wb_ram:1.1
+INFO: Preparing ::picorv32_demo:0
 ```
+
+And there is also a synthesis target that will build a bitstream file for a
+Xilinx Artix7 A35T FPGA (untested on real hardware), when FuseSoC runs with
+`--target=synth` option.
+
+In order to generate this example either for simulation or synthesis, an example
+firmware must be generated first:
+
+1. Generate example firmware
+
+    ```bash
+    make -C firmware firmware.hex
+    ```
+
+Then, FuseSoC can runs normally, as usual.
 
 2. Run synthesis for picorv32
 
