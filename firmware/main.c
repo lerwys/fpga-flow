@@ -12,8 +12,8 @@ int main (void)
     int i;
     uint32_t leds;
     for (i = 0, leds = 0; i < 10; ++i) {
-        leds <<= i;
-        write_led (i);
+        write_led (leds);
+        leds <<= 1;
     }
 
     return 0;
