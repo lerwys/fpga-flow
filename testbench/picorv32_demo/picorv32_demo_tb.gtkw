@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Mon Aug  6 23:00:24 2018
+[*] Tue Aug  7 19:38:36 2018
 [*]
 [dumpfile] "/home/lerwys/Repos/fpga-flow/build/picorv32_demo_0/sim-icarus/testbench.vcd"
-[dumpfile_mtime] "Mon Aug  6 22:57:51 2018"
-[dumpfile_size] 729981
+[dumpfile_mtime] "Tue Aug  7 19:38:24 2018"
+[dumpfile_size] 352056
 [savefile] "/home/lerwys/Repos/fpga-flow/testbench/picorv32_demo/picorv32_demo_tb.gtkw"
-[timestart] 68210000
-[size] 1680 1005
-[pos] -1 -401
-*-22.000000 87080000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 0
+[size] 1678 1000
+[pos] -1 -1
+*-22.000000 1135000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] picorv32_demo_tb.
 [treeopen] picorv32_demo_tb.dut.
 [treeopen] picorv32_demo_tb.dut.wb_intercon0.
@@ -17,22 +17,23 @@
 [signals_width] 486
 [sst_expanded] 1
 [sst_vpaned_height] 377
-@c00200
+@800200
 -wb_ma_picorv32
 @28
 picorv32_demo_tb.dut.cmp_picorv32.wb_clk_i
 picorv32_demo_tb.dut.cmp_picorv32.wb_rst_i
 picorv32_demo_tb.dut.cmp_picorv32.wbm_cyc_o
-@22
-picorv32_demo_tb.dut.cmp_picorv32.wbm_adr_o[31:0]
-picorv32_demo_tb.dut.cmp_picorv32.wbm_dat_i[31:0]
-picorv32_demo_tb.dut.cmp_picorv32.wbm_dat_o[31:0]
-picorv32_demo_tb.dut.cmp_picorv32.wbm_sel_o[3:0]
-@28
 picorv32_demo_tb.dut.cmp_picorv32.wbm_stb_o
 picorv32_demo_tb.dut.cmp_picorv32.wbm_we_o
+@22
+picorv32_demo_tb.dut.cmp_picorv32.wbm_sel_o[3:0]
+picorv32_demo_tb.dut.cmp_picorv32.wbm_dat_i[31:0]
+picorv32_demo_tb.dut.cmp_picorv32.wbm_adr_o[31:0]
+picorv32_demo_tb.dut.cmp_picorv32.wbm_dat_o[31:0]
+@28
 picorv32_demo_tb.dut.cmp_picorv32.wbm_ack_i
-@1401200
+picorv32_demo_tb.dut.cmp_picorv32.trap
+@1000200
 -wb_ma_picorv32
 @c00200
 -wb_intercon
@@ -99,37 +100,36 @@ picorv32_demo_tb.dut.cmp_wb_leds.clk_i
 picorv32_demo_tb.dut.cmp_wb_leds.rst_n_i
 picorv32_demo_tb.dut.cmp_wb_leds.wb_cyc_i
 picorv32_demo_tb.dut.cmp_wb_leds.wb_stb_i
-@22
-picorv32_demo_tb.dut.cmp_wb_leds.wb_adr_i[31:0]
-@28
 picorv32_demo_tb.dut.cmp_wb_leds.wb_we_i
 @22
+picorv32_demo_tb.dut.cmp_wb_leds.wb_sel_i[3:0]
+picorv32_demo_tb.dut.cmp_wb_leds.wb_adr_i[31:0]
 picorv32_demo_tb.dut.cmp_wb_leds.wb_dat_i[31:0]
 picorv32_demo_tb.dut.cmp_wb_leds.wb_dat_o[31:0]
 @28
-picorv32_demo_tb.dut.cmp_wb_leds.wb_err_o
-picorv32_demo_tb.dut.cmp_wb_leds.wb_rty_o
 picorv32_demo_tb.dut.cmp_wb_leds.wb_ack_o
 picorv32_demo_tb.dut.cmp_wb_leds.wb_stall_o
+@23
+picorv32_demo_tb.dut.cmp_wb_leds.leds_o[31:0]
 @1000200
 -wb_leds
-@800201
+@800200
 -wb_ram
-@29
+@28
 picorv32_demo_tb.dut.cmp_wb_ram.wb_clk_i
 picorv32_demo_tb.dut.cmp_wb_ram.wb_rst_i
 picorv32_demo_tb.dut.cmp_wb_ram.wb_cyc_i
 picorv32_demo_tb.dut.cmp_wb_ram.wb_stb_i
 picorv32_demo_tb.dut.cmp_wb_ram.wb_we_i
-@23
+@22
 picorv32_demo_tb.dut.cmp_wb_ram.wb_sel_i[3:0]
 picorv32_demo_tb.dut.cmp_wb_ram.wb_adr_i[15:0]
 picorv32_demo_tb.dut.cmp_wb_ram.wb_dat_i[31:0]
 picorv32_demo_tb.dut.cmp_wb_ram.wb_dat_o[31:0]
-@29
+@28
 picorv32_demo_tb.dut.cmp_wb_ram.wb_err_o
 picorv32_demo_tb.dut.cmp_wb_ram.wb_ack_o
-@1000201
+@1000200
 -wb_ram
 [pattern_trace] 1
 [pattern_trace] 0
