@@ -208,23 +208,23 @@ Then, FuseSoC can runs normally, as usual.
 
 2. Run synthesis for picorv32
 
-```bash
-fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmware.hex
-```
+    ```bash
+    fusesoc build --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmware.hex
+    ```
 
-3. Optionally run fusesoc with the option --vcd to genearte a dump of the signals
+3. Optionally run fusesoc with the option --vcd to generate a dump of the signals
 
-```bash
-fusesoc run --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmware.hex --vcd
-```
+    ```bash
+    fusesoc build --target=synth --tool=vivado picorv32_demo --firmware=firmware/firmware.hex --vcd
+    ```
 
 4. And open gtkwave to analyze the signals
 
-```bash
-gtkwave build/picorv32_demo_0/sim-icarus/testbench.vcd testbench/picorv32_demo/picorv32_demo_tb.gtkw
-```
+    ```bash
+    gtkwave build/picorv32_demo_0/sim-icarus/testbench.vcd testbench/picorv32_demo/picorv32_demo_tb.gtkw
+    ```
 
-### PicoRV32 Makefile automation
+#### Makefile automation
 
 Instead of typing the commands one by one, a Makefile is provided for convenience.
 The Makefile just calls FuseSoC on the background, but it avoids having to memorize
@@ -232,24 +232,24 @@ the full command.
 
 * Run simulation
 
-```bash
-make picorv32_demo_sim
-````
+    ```bash
+    make picorv32_demo_sim
+    ```
 
 * Run simulation with VCD output
 
-```bash
-make picorv32_demo_view
-````
+    ```bash
+    make picorv32_demo_view
+    ```
 
 * Run synthesis
 
-```bash
-make picorv32_demo_synth
-````
+    ```bash
+    make picorv32_demo_synth
+    ```
 
 * Clean generated files
 
-```bash
-make clean
-````
+    ```bash
+    make clean
+    ```
