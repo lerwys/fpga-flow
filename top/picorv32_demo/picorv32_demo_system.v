@@ -25,6 +25,8 @@ module picorv32_demo_system #(
 assign wb_clk = clk_i;
 assign wb_rst = rst_i;
 
+wire rst_n = ~rst_i;
+
 ////////////////////////////////////////////////////////////////////////
 // Picorv32
 ////////////////////////////////////////////////////////////////////////
@@ -102,7 +104,7 @@ wb_leds cmp_wb_leds
 (
     // Clock/Resets
     .clk_i              (clk_i),
-    .rst_n_i            (rst_i),
+    .rst_n_i            (rst_n),
 
     // Wishbone signals
     .wb_cyc_i           (wb_m2s_leds_cyc),
