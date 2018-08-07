@@ -29,4 +29,4 @@ clean:
 	rm -rf build
 	$(MAKE) -C $(FIRMWARE_DIR) clean
 
-.PHONY: clean picorv32_demo_sim picorv32_demo_synth
+.PHONY: clean picorv32_demo_sim picorv32_demo_synth $(FIRMWARE)
