@@ -80,9 +80,9 @@ wb_ram #(
     .wb_rst_i           (rst_i),
 
     .wb_cyc_i           (wb_m2s_ram_cyc),
-    .wb_dat_i           (wb_s2m_ram_dat),
+    .wb_dat_i           (wb_m2s_ram_dat),
     .wb_sel_i           (wb_m2s_ram_sel),
-    .wb_we_i            (wb_s2m_ram_we),
+    .wb_we_i            (wb_m2s_ram_we),
     .wb_bte_i           (wb_m2s_ram_bte),
     .wb_cti_i           (wb_m2s_ram_cti),
     .wb_adr_i           (wb_m2s_ram_adr),
@@ -106,9 +106,9 @@ wb_leds cmp_wb_leds
 
     // Wishbone signals
     .wb_cyc_i           (wb_m2s_leds_cyc),
-    .wb_dat_i           (wb_s2m_leds_dat),
+    .wb_dat_i           (wb_m2s_leds_dat),
     .wb_sel_i           (wb_m2s_leds_sel),
-    .wb_we_i            (wb_s2m_leds_we),
+    .wb_we_i            (wb_m2s_leds_we),
     .wb_adr_i           (wb_m2s_leds_adr),
     .wb_stb_i           (wb_m2s_leds_stb),
     .wb_dat_o           (wb_s2m_leds_dat),
