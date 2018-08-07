@@ -1,6 +1,6 @@
 module picorv32_demo_system #(
     parameter firmware_file = "",
-    parameter firmware_ram_depth = 16384*4
+    parameter firmware_ram_depth = 16384*4 // 16KB
 )
 (
     input           clk_i,
