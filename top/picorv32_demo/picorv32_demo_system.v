@@ -34,6 +34,9 @@ picorv32_wb #(
     .ENABLE_DIV           (1),
     .ENABLE_IRQ           (1),
     .ENABLE_TRACE         (1)
+    // Enable support for compressed instr. set. Must match firmware options
+    // in Makefile
+    .COMPRESSED_ISA       (1),
 ) cmp_picorv32 (
     .wb_clk_i           (clk_i),
     .wb_rst_i           (rst_i),
