@@ -17,6 +17,9 @@ void print_str(const char *p);
 void print_dec(unsigned int val);
 void print_hex(unsigned int val, int digits);
 
+// delay.c
+int delay(int x);
+
 // leds.c
 void write_led(uint32_t led);
 uint32_t read_led(void);
