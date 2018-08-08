@@ -1,7 +1,7 @@
 RISCV_GNU_TOOLCHAIN_INSTALL_PREFIX = /opt/riscv32
 
 SHELL = bash
-FIRMWARE_OBJS = start.o main.o print.o leds.o
+FIRMWARE_OBJS = start.o main.o print.o leds.o delay.o
 GCC_WARNS  = -Werror -Wall -Wextra -Wshadow -Wundef -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings
 GCC_WARNS += -Wredundant-decls -Wstrict-prototypes -Wmissing-prototypes -pedantic # -Wconversion
 TOOLCHAIN_PREFIX = $(RISCV_GNU_TOOLCHAIN_INSTALL_PREFIX)i/bin/riscv32-unknown-elf-
