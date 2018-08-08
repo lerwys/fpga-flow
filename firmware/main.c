@@ -11,10 +11,13 @@ int main (void)
 {
     int i;
     uint32_t leds;
-    for (i = 0, leds = 1; i < 5; ++i) {
-        write_led (leds);
-        leds <<= 1;
-        // sleep () so your eyes can see the leds moving ...
+    while (1) {
+        for (i = 0, leds = 1; i < 5; ++i) {
+            write_led (leds);
+            leds <<= 1;
+            delay(100000000/4);
+            // sleep () so your eyes can see the leds moving ...
+        }
     }
 
     return 0;
