@@ -81,7 +81,7 @@ module picorv32_demo_tb #(
         .mem_instr_o    (),
         .irq_i          (irq),
 
-        .gpio_b         ()
+        .gpio_o         ()
     );
 
 endmodule

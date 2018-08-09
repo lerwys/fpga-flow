@@ -13,7 +13,7 @@ module picorv32_demo_system #(
     input [31:0]    irq_i,
 
     // external modules
-    inout [31:0]    gpio_b
+    output [31:0]    gpio_o
 );
 
 ////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ wb_leds cmp_wb_leds
     .wb_ack_o           (wb_s2m_leds_ack),
 
     // LEDs
-    .leds_o             (gpio_b)
+    .leds_o             (gpio_o)
 );
 
 assign wb_s2m_leds_err = 1'b0;

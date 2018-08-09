@@ -27,7 +27,7 @@ sys_clk #(
     .locked_o       (locked)
 );
 
-wire [31:0] gpio_b;
+wire [31:0] gpio;
 wire trap;
 wire trace_valid;
 wire [35:0] trace_data;
@@ -44,14 +44,14 @@ picorv32_demo_system #(
 
     .irq_i          (irq),
 
-    .gpio_b         (gpio_b)
+    .gpio_o         (gpio)
 );
 
-assign gpio_led_o[0] = gpio_b[0];
-assign gpio_led_o[1] = gpio_b[1];
+assign gpio_led_o[0] = gpio[0];
+assign gpio_led_o[1] = gpio[1];
 // These are connected to 3.3V in CMOD A7, so we negate them
-assign gpio_led_o[2] = ~gpio_b[2];
-assign gpio_led_o[3] = ~gpio_b[3];
+assign gpio_led_o[2] = ~gpio[2];
+assign gpio_led_o[3] = ~gpio[3];
 assign gpio_led_o[4] = ~trap;
 
 endmodule
