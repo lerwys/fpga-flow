@@ -47,6 +47,11 @@ picorv32_demo_system #(
     .gpio_b         (gpio_b)
 );
 
-assign gpio_led_o = {trap, gpio_b[31:28]};
+assign gpio_led_o[0] = gpio_b[0];
+assign gpio_led_o[1] = gpio_b[1];
+// These are connected to 3.3V in CMOD A7, so we negate them
+assign gpio_led_o[2] = ~gpio_b[2];
+assign gpio_led_o[3] = ~gpio_b[3];
+assign gpio_led_o[4] = ~trap;
 
 endmodule
