@@ -1,7 +1,7 @@
 `timescale 1 ns / 1 ns
 
 module picorv32_demo_top #(
-    parameter firmware_file = "../top/picorv32_demo_top/data/system32.hex"
+    parameter firmware_file = "firmware/firmware.hex"
 )
 (
     input            sysclk_i,

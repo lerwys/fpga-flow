@@ -1,5 +1,5 @@
 module picorv32_demo_system #(
-    parameter firmware_file = "",
+    parameter firmware_file = "firmware/firmware.hex",
     parameter firmware_ram_depth = 16384*4 // 16KB
 )
 (

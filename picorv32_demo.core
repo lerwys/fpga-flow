@@ -7,6 +7,7 @@ filesets:
       - top/picorv32_demo/wb_intercon.v
       - top/picorv32_demo/wb_intercon.vh:         {is_include_file : true}
       - top/picorv32_demo/picorv32_demo_system.v
+      - firmware/firmware.hex:                    {file_type: user, copyto: firmware/firmware.hex}
     file_type: verilogSource
     depend:
       - ">=wb_intercon-1.0"
