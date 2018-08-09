@@ -70,7 +70,10 @@ module picorv32_demo_tb #(
 		irq[5] = &dut.cmp_picorv32.picorv32_core.count_cycle[15:0];
 	end
 
-    picorv32_demo_system dut
+    picorv32_demo_system # (
+        .firmware_file  ("")
+    )
+    dut
     (
         .clk_i          (clk),
         .rst_i          (rst),
