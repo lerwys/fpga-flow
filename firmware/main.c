@@ -15,7 +15,10 @@ int main (void)
         for (i = 0, leds = 1; i < 5; ++i) {
             write_led (leds);
             leds <<= 1;
-            delay(100000000/4);
+            // These are on avarage 4 instructions, each taking
+            // 3-4 cycles to complete. So, divide the delay in
+            // seconds by 16
+            delay(SYS_CLK_HZ/5/16);
             // sleep () so your eyes can see the leds moving ...
         }
     }
