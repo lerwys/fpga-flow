@@ -51,6 +51,11 @@ picorv32_wb #(
     .wbm_we_o           (wb_m2s_picorv32_we),
     .wbm_sel_o          (wb_m2s_picorv32_sel),
 
+    .pcpi_wr            (1'b0),
+    .pcpi_rd            (32'b0),
+    .pcpi_wait          (1'b0),
+    .pcpi_ready         (1'b0),
+
     .trap               (trap_o),
     .irq                (irq_i),
     .trace_valid        (trace_valid_o),
