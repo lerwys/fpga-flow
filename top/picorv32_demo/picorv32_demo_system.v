@@ -35,16 +35,9 @@ picorv32_wb #(
     .ENABLE_MUL           (1),
     .ENABLE_DIV           (1),
     .ENABLE_TRACE         (1),
-    .ENABLE_COUNTERS      (1),
-    .ENABLE_COUNTERS64    (1),
-    .ENABLE_REGS_16_31    (1),
     // Enable support for compressed instr. set. Must match firmware options
     // in Makefile
-    .COMPRESSED_ISA       (1),
-        // Start into the bootloader at 0x00000000
-    .PROGADDR_RESET       (32'h 0000_0000),
-    .CATCH_MISALIGN       (1),
-    .BARREL_SHIFTER       (1)
+    .COMPRESSED_ISA       (1)
 ) cmp_picorv32 (
     .wb_clk_i           (clk_i),
     .wb_rst_i           (rst_i),
