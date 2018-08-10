@@ -12,6 +12,8 @@ module picorv32_demo_top #(
 wire clk_125;
 wire clk_200;
 wire locked;
+// Should be more robust than this, but it will do for now
+wire rst = ~locked;
 sys_clk #(
     .DIFF_CLKIN     ("FALSE"),
     .CLKIN_PERIOD   (83.33),
@@ -36,7 +38,7 @@ picorv32_demo_system #(
     .firmware_file  (firmware_file)
 ) cmp_picorv32_demo_system (
     .clk_i          (clk_125),
-    .rst_i          (1'b0),
+    .rst_i          (rst),
     .trap_o         (trap),
     .trace_valid_o  (trace_valid),
     .trace_data_o   (trace_data),
