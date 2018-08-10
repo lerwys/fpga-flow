@@ -11,6 +11,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define SYS_CLK_HZ 100000000
+
 // print.c
 void print_chr(char ch);
 void print_str(const char *p);
