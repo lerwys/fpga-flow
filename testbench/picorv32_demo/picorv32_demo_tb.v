@@ -63,12 +63,7 @@ module picorv32_demo_tb #(
         end
     end
 
-    reg [31:0] irq;
-    always @* begin
-        irq = 0;
-        irq[4] = &dut.cmp_picorv32.picorv32_core.count_cycle[12:0];
-        irq[5] = &dut.cmp_picorv32.picorv32_core.count_cycle[15:0];
-    end
+    reg [31:0] irq = 0;
 
     picorv32_demo_system # (
         .firmware_file  ("")
