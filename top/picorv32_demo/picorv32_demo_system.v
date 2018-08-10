@@ -34,7 +34,6 @@ picorv32_wb #(
     .ENABLE_REGS_DUALPORT (1),
     .ENABLE_MUL           (1),
     .ENABLE_DIV           (1),
-    .ENABLE_IRQ           (1),
     .ENABLE_TRACE         (1),
     .ENABLE_COUNTERS      (1),
     .ENABLE_COUNTERS64    (1),
