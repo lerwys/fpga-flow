@@ -10,11 +10,15 @@
 .section .text
 .global main
 .global start
+.global entry
+
+start:
+	j entry
 
 /* Main program
  **********************************/
 
-start:
+entry:
     /* zero-initialize all registers */
 
     addi x1, zero, 0
