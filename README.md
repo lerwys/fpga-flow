@@ -248,6 +248,14 @@ the full command.
     make picorv32_demo_synth
     ```
 
+* Program target
+
+For now, only CMOD A7 board is supported.
+
+    ```bash
+    make picorv32_demo_program
+    ```
+
 * Clean generated files
 
     ```bash
