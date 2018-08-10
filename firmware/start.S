@@ -49,8 +49,8 @@ start:
     addi x30, zero, 0
     addi x31, zero, 0
 
-    /* set stack pointer */
-    lui sp,(16*1024)>>12
+	/* set stack pointer */
+    la sp, _fstack
 
     /* set gp and tp */
     lui gp, %hi(0xdeadbeef)
