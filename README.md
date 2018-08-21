@@ -10,9 +10,8 @@ Some of the tools being tested here are:
     * For now, a FuseSoC fork is needed to support the new features being implemented.
         You can get it here: [FuseSoC Fork](https://github.com/lerwys/fusesoc)
 2. [Cheby](https://gitlab.cern.ch/cohtdrivers/cheby), for register-map generation
-    * There is a Cheby fork with some new details changed, but they are pretty much
-        merged in upstream Cheby. You should't need the fork, but in any case you can
-        get it here: [Cheby Fork](https://github.com/lerwys/cheby)
+    * For now, a Cheby fork is needed to support the new features being implemented.
+        You can get it here: [Cheby Fork](https://github.com/lerwys/cheby)
 3. [vhd2vl](https://github.com/ldoolitt/vhd2vl), for converting from VHDL to Verilog code
 
 ## Clone Instructions
